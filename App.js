@@ -6,6 +6,7 @@ import styles from './Styles';
 import CustomRadiobutton from './components/CustomRadiobutton';
 
 export default function App() {
+  // state variables
   const [weight, setWeight] = useState(null);
   const [selectedBottles, setSelectedBottles] = useState(1);
   const [selectedTime, setSelectedTime] = useState(1);
@@ -13,7 +14,7 @@ export default function App() {
   const [permille, setPermille] = useState(0.0);
   const [resultHint, setResultHint] = useState('');
 
-  // Load custom font for app header
+  // load custom font for app header
   const [fontLoaded] = useFonts({
     KauhanScriptReg: require('./assets/fonts/KaushanScript-Regular.ttf')
   });
@@ -51,7 +52,7 @@ export default function App() {
       return;
     }
 
-    // assumption is that alcohol is consumed in 0.33 l bottle which are 4.5 % alcohol
+    // assumption is that alcohol is consumed in 0.33 l bottle which is 4.5 % alcohol
     const litres = selectedBottles * 0.33;
     const alcoholGrams = litres * 8 * 4.5;
     const burningRate = weight / 10;
@@ -59,8 +60,6 @@ export default function App() {
     const genderFactor = selectedGender === 'male' ? 0.7 : 0.6;
     const permille = alcoholNotBurned / (weight * genderFactor);
     setResultHint(permille <= 0 ? 'It is safe to drive' : permille < 0.5 ? 'It is legal to drive but please dont' : 'DO NOT DRIVE!');
-    // console.log(`selectedtime h: ${selectedTime}, bottles: ${selectedBottles}, weight: ${weight}, gender: ${selectedGender}`);
-    // console.log(`litres: ${litres}, grams: ${alcoholGrams}, burningrate: ${burningRate}, not burned: ${alcoholNotBurned}, genderfactor: ${genderFactor}, permille: ${permille}`);
     setPermille(permille < 0 ? 0 : permille);
   };
 
@@ -68,7 +67,7 @@ export default function App() {
     <View style={styles.container}>
       <Text style={styles.appHeader}>Alcometer </Text>
       <ScrollView style={styles.scrollView}>
-        <Text style={styles.textrow}>Weight</Text>
+        <Text style={styles.textrow}>Weight kg</Text>
         <TextInput
           style={styles.textInput}
           value={weight}
@@ -115,8 +114,7 @@ export default function App() {
           <Text style={styles.textResult}>{`${permille.toFixed(2)} ‰`}</Text>
           <Text style={styles.textHint}>{resultHint}</Text>
         </View>
-        <Button style={styles.button} title='Calculate' onPress={calculatePermille}></Button>
-        {/* <Text>{`w:${weight} b: ${selectedBottles} t: ${selectedTime} g: ${selectedGender} p:${permille}`}</Text> */}
+        <Button style={styles.button} title='Calculate' onPress={calculatePermille}/>
       </ScrollView>
     </View >
   );
