@@ -105,7 +105,7 @@ export default function App() {
             }
           </Picker>
         </View>
-        <Text style={styles.textrow}>Gender</Text>
+        <Text style={[styles.textrow, {marginBottom: 20}]}>Gender</Text>
         <CustomRadiobutton options={radiobuttonOptions} onPress={(value) => setSeletedGender(value)} />
         <View style={[
             styles.result,
