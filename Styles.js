@@ -28,13 +28,27 @@ export default StyleSheet.create({
     fontSize: 20,
     marginTop: 20,
   },
+  picker: {
+    borderWidth: 1,
+    borderRadius: 10,
+  },
   textResult: {
     fontWeight: '700',
     fontSize: 50,
-    color: '#1666a6'
+    textAlign: 'center',
   },
-  button: {
-    borderRadius: 40,
-    
+  textHint: {
+    fontWeight: '700',
+    fontSize: 20,
+    textAlign: 'center',
+  },
+  resultColorOk: {
+    backgroundColor: 'green'
+  },
+  resultColorWarning: {
+    backgroundColor: 'yellow'
+  },
+  resultColorAlert: {
+    backgroundColor: 'red'
   }
 });
