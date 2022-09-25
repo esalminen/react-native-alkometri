@@ -59,7 +59,7 @@ export default function App() {
     const alcoholNotBurned = alcoholGrams - burningRate * selectedTime;
     const genderFactor = selectedGender === 'male' ? 0.7 : 0.6;
     const permille = alcoholNotBurned / (weight * genderFactor);
-    setResultHint(permille <= 0 ? 'It is safe to drive' : permille < 0.5 ? 'It is legal to drive but please dont' : 'DO NOT DRIVE!');
+    setResultHint(permille <= 0 ? 'It is safe to drive' : permille < 0.49 ? 'It\'s legal to drive but please don\'t' : 'DO NOT DRIVE!');
     setPermille(permille < 0 ? 0 : permille);
   };
 
@@ -108,9 +108,10 @@ export default function App() {
         <Text style={styles.textrow}>Gender</Text>
         <CustomRadiobutton options={radiobuttonOptions} onPress={(value) => setSeletedGender(value)} />
         <View style={[
+            styles.result,
             permille <= 0 && styles.resultColorOk,
-            permille > 0 && styles.resultColorWarning,
-            permille > 0.5 && styles.resultColorAlert]}>
+            permille > 0 && permille < 0.49 && styles.resultColorWarning,
+            permille >= 0.49 && styles.resultColorAlert]}>
           <Text style={styles.textResult}>{`${permille.toFixed(2)} ‰`}</Text>
           <Text style={styles.textHint}>{resultHint}</Text>
         </View>

@@ -42,6 +42,11 @@ export default StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
   },
+  result: {
+    marginBottom: 10,
+    padding: 10,
+    borderRadius: 20
+  },
   resultColorOk: {
     backgroundColor: 'green'
   },
