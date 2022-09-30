@@ -21,7 +21,6 @@ export default StyleSheet.create({
   textInput:  {
     height: 40,
     borderBottomWidth: 1,
-    marginBottom: 20
   },
   textrow: {
     fontWeight: '600',
